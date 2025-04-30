@@ -40,7 +40,7 @@ resource "aws_instance" "tool" {
 
   ami = var.ami_id # Amazon Linux 2 AMI in us-east-1
   instance_type = var.instance_type
-  vpc_security_group_ids = []
+  vpc_security_group_ids = [aws_security_group.tools.id]
 
   tags = {
     Name = " ${ var.name }-terraform "
