@@ -1,8 +1,14 @@
 terraform {
   backend "s3" {
     bucket = "mikey-s3"
-    key = "vault_secrets/state"
+    key    = "vault_secrets/state"
     region = "us-east-1"
+  }
+  required_providers {
+    vault = {
+      source  = "hashicorp/vault"
+      version = "4.5.0"
+    }
   }
 }
 
@@ -18,6 +24,12 @@ variable "token" {
   default = ""
 }
 
+resource "vault_mount" "ssh" {
+  path = "infra"
+  type = "kv"
+  options = { version = "2" }
+  description = "ssh vault_mount"
+}
 
 resource "vault_generic_secret" "example" {
   path = "infra/ssh"
