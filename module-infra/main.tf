@@ -55,6 +55,9 @@ resource "aws_instance" "tool" {
   }
 }
 
+output "public_ip" {
+  value = aws_instance.tool.public_ip
+}
 
 resource "aws_route53_record" "private" {
 

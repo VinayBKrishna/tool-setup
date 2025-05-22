@@ -14,7 +14,7 @@ terraform {
 
 
 provider "vault" {
-  address = "http://44.203.215.181:8200/"
+  address = "http://vault.mikeydevops1.online:8200/"
   token = var.token
 }
 
